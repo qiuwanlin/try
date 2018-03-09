@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>导航键盘</title>
+    <link rel="stylesheet" href="./dao.css">
+</head>
+<body>
+    <main>
+        <div class="wrapper" id="second">
+
+        </div>
+    </main>
+    <script>
+    var keys = {
+		'0': {0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',length:10},
+		'1': {0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',length:9},
+		'2': {0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:7},
+		'length': 3
+	}
+	var hash = {'q': 'qq.com', 'w': 'weibo.com', 'r': 'renren.com', 't': 'tianya.com', 'y': 'youtube.com', 'u': 'uc.com' , 'i': 'iqiyi.com', 'o': 'opera.com', 'p': undefined, 'a': 'acfun.tv', 's': 'sohu.com', 'z': 'zhihu.com', 'm': 'www.mcdonalds.com.cn'	
+    }
+    hash2 = JSON.parse(localStorage.getItem('box') || 'null')
+    if(hash2){
+        hash = hash2
+    }
+    i=0
+    while(i<keys['length']){
+        div1 = document.createElement('div')
+        second.appendChild(div1)
+        r = keys[i]
+        i2=0
+        while(i2<r['length']){
+            kbd1 = document.createElement('kbd')
+            kbd1.textContent = r[i2]
+            button1= document.createElement('button')
+            button1.textContent = '编辑'
+            button1.id = r[i2]
+            button1.onclick = function(a){
+                key = a['target']['id']
+                x = prompt('给个网址呗~')
+                hash[key] = x
+                localStorage.setItem('box', JSON.stringifyhash)
+            }
+            kbd1.appendChild(button1)
+            div1.appendChild(kbd1)
+            i2 =i2 +1
+        }
+        i = i+1
+    }
+    document.onkeypress = function(a){
+        key = a['key']
+        w = hash[key]
+        window.open('http://'+w, '_blank')
+    }
+    </script>
+</body>
+</html>
